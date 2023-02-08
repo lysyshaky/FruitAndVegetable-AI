@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
                 width: 300,
                 child: Column(
                   children: [
-                    Image.asset('assets/dog.png'),
+                    Image.asset('assets/cat.png'),
                     const SizedBox(
                       height: 50,
                     )
@@ -98,9 +98,12 @@ class _HomeState extends State<Home> {
                       ),
                       child: const Text(
                         "Take a photo",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 12,
                   ),
                   GestureDetector(
                     onTap: pickGalleryImage,
@@ -115,7 +118,7 @@ class _HomeState extends State<Home> {
                       ),
                       child: const Text(
                         "Camera Roll",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ),
                   )

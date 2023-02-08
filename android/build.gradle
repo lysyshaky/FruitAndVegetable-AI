@@ -8,6 +8,10 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // compile 'org.tensorflow:tensorflow-lite:+'
+        // compile 'org.tensorflow:tensorflow-lite-gpu:+'
+        // implementation 'org.tensorflow:tensorflow-lite:+'
+        // implementation 'org.tensorflow:tensorflow-lite-gpu:+'
     }
 }
 
