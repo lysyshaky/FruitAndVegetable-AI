@@ -15,11 +15,12 @@ class _MySplashState extends State<MySplash> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds: Home(),
-      title: Text("Dog and Cat", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Color(0xFFE99600),),),
+      navigateAfterSeconds:const Home(),
+      title: const Text("Dog and Cat", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Color(0xFFE99600),),),
       image: Image.asset('assets/cat.png'),
+      photoSize: 120.0,
       backgroundColor: Colors.black,
-      loaderColor: Color(0xFFEEDA28),
+      loaderColor: const Color(0xFFEEDA28),
     );
   }
 }
