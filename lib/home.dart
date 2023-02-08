@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite/tflite.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,7 +17,8 @@ class _HomeState extends State<Home> {
   final picker = ImagePicker();
   // ignore: unused_field
   late File _image;
-
+  bool _loading = false;
+  List outputs = [];
   pickImage() async {
     // ignore: deprecated_member_use
     var image = await picker.getImage(source: ImageSource.camera);
@@ -25,6 +27,7 @@ class _HomeState extends State<Home> {
     setState(() {
       _image = File(image.path);
     });
+    classifyImage(_image);
   }
 
   pickGalleryImage() async {
@@ -35,6 +38,41 @@ class _HomeState extends State<Home> {
     setState(() {
       _image = File(image.path);
     });
+    classifyImage(_image);
+  }
+
+  loaModel() async {
+    await Tflite.loadModel(
+        model: "assets/model_unquant.tflite", labels: "assets/labels.txt");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = true;
+    loaModel().then((value) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
+  }
+
+  classifyImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+    setState(() {
+      _loading = false;
+      outputs = output!;
+    });
+    return output;
   }
 
   @override
@@ -67,18 +105,41 @@ class _HomeState extends State<Home> {
               height: 50,
             ),
             Center(
-              // ignore: sized_box_for_whitespace
-              child: Container(
-                width: 300,
-                child: Column(
-                  children: [
-                    Image.asset('assets/cat.png'),
-                    const SizedBox(
-                      height: 50,
-                    )
-                  ],
-                ),
-              ),
+                // ignore: sized_box_for_whitespace
+                child: _loading
+                    ? Container(
+                        width: 300,
+                        child: Column(
+                          children: [
+                            Image.asset('assets/cat.png'),
+                            const SizedBox(
+                              height: 50,
+                            )
+                          ],
+                        ),
+                      )
+                    // ignore: avoid_unnecessary_containers
+                    : Container(
+                        child: Column(children: [
+                          // ignore: sized_box_for_whitespace
+                          Container(
+                            height: 250,
+                            child: Image.file(_image),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          outputs != null
+                              ? Text(
+                                  "${outputs[0]['label']}",
+                                  style: const TextStyle(
+                                      color: Color(0xFFEEDA28), fontSize: 20),
+                                )
+                              : Container(),
+                        ]),
+                      )),
+            const SizedBox(
+              height: 20,
             ),
             // ignore: sized_box_for_whitespace
             Container(
