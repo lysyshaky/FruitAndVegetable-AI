@@ -1,4 +1,4 @@
-import 'package:cat_dog/splashscreen.dart';
+import 'package:flower_recogniser/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Cat vs Dog',
+      title: 'Flower Recogniser',
       home: MySplash(),
       debugShowCheckedModeBanner: false,
     );

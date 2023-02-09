@@ -15,12 +15,24 @@ class _MySplashState extends State<MySplash> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds:const Home(),
-      title: const Text("Dog and Cat", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Color(0xFFE99600),),),
-      image: Image.asset('assets/cat.png'),
+      navigateAfterSeconds: const Home(),
+      title: const Text(
+        "Flower Recorgniser",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 30,
+          color: Colors.white,
+        ),
+      ),
+      image: Image.asset('assets/flower.png'),
       photoSize: 120.0,
-      backgroundColor: Colors.black,
-      loaderColor: const Color(0xFFEEDA28),
+      gradientBackground: const LinearGradient(
+        colors: [Color(0xFFA8E063), Color(0xFF56AB2F)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        stops: [0.004, 1],
+      ),
+      loaderColor: Colors.white,
     );
   }
 }

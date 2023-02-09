@@ -48,6 +48,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.cat_dog"
         // You can update the following values to match your application needs.
@@ -60,9 +61,11 @@ android {
 
     buildTypes {
         release {
+           
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            crunchPngs false
         }
     }
 }
@@ -75,4 +78,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.tensorflow:tensorflow-lite:+'
     implementation 'org.tensorflow:tensorflow-lite-gpu:+'
+    implementation 'com.android.support:multidex:2.0.1'
 }
