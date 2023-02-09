@@ -1,4 +1,4 @@
-# cat_dog
+# Flower Recogniser
 
 A new Flutter project.
 
