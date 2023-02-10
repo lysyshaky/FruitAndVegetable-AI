@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
 
   loaModel() async {
     await Tflite.loadModel(
-        model: "assets/model_unquant.tflite", labels: "assets/labels.txt");
+        model: "assets/model.tflite", labels: "assets/labels.txt");
   }
 
   @override
@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
         path: image.path,
-        numResults: 2,
+        numResults: 5,
         threshold: 0.5,
         imageMean: 127.5,
         imageStd: 127.5);
