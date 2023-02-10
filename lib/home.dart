@@ -171,10 +171,77 @@ class _HomeState extends State<Home> {
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.file(_image),
                                       ),
-                                    )
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    outputs != null
+                                        ? Text(
+                                            "Prediction is: ${outputs[0]["label"]}",
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )
+                                        : Container(),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
                                   ],
                                 ),
                               ),
+                      ),
+                    ),
+                    // ignore: sized_box_for_whitespace
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: pickImage,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 17),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF56AB2F),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: const Text(
+                                "Take a Photo",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: pickGalleryImage,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 17),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF56AB2F),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: const Text(
+                                "Camera Roll",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],
