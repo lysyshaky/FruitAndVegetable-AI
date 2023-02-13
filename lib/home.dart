@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
         path: image.path,
-        numResults: 5,
+        numResults: 131,
         threshold: 0.5,
         imageMean: 127.5,
         imageStd: 127.5);
@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFA8E063), Color(0xFF56AB2F)],
+            colors: [Color(0xFF00B4DB), Color(0xFF0083B0)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0.004, 1],
@@ -95,10 +95,10 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 60,
               ),
-              const Text("Detect Flowers",
+              const Text("Detect Fruits & Vegetables",
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: 24,
                       fontWeight: FontWeight.w800)),
               const SizedBox(
                 height: 10,

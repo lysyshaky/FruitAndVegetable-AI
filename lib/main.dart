@@ -1,4 +1,4 @@
-import 'package:flower_recogniser/splashscreen.dart';
+import 'package:fruit_vegetable/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
